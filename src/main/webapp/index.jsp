@@ -1,11 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title></title>
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+      <title>Social Statistic</title>
   </head>
-  <body>
-  Hello world!
-  Hello world!
+  <body class="body">
+  <div class="index-button">
+      <a href="jsp/main.jsp">
+          <button type="button" class="btn btn-lg btn-info my-btn">Take statistic from Instagram</button>
+      </a>
+  </div>
   </body>
 </html>
 
