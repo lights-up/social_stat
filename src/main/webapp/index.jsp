@@ -7,7 +7,7 @@
   </head>
   <body class="body">
   <div class="index-button">
-      <a href="jsp/main.jsp">
+      <a href="/getcode">
           <button type="button" class="btn btn-lg btn-info my-btn">Take statistic from Instagram</button>
       </a>
   </div>

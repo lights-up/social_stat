@@ -6,5 +6,23 @@
         <welcome-file-list>
             <welcome-file>index.jsp</welcome-file>
         </welcome-file-list>
+    <servlet>
+        <servlet-name>code-servlet</servlet-name>
+        <servlet-class>by.lightsup.socialstat.controller.CodeController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>code-servlet</servlet-name>
+        <url-pattern>/getcode</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>token-servlet</servlet-name>
+        <servlet-class>by.lightsup.socialstat.controller.TokenController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>token-servlet</servlet-name>
+        <url-pattern>/gettoken</url-pattern>
+    </servlet-mapping>
 </web-app>
