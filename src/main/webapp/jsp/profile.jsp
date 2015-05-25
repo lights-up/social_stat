@@ -20,6 +20,7 @@
         </td>
         <td>
             <button class="btn btn-lg btn-info">Log out</button>
+                <button class="btn btn-lg btn-info">My photo</button>
         </td>
     </tr>
 </table>
@@ -35,6 +36,9 @@
             <td>
                 <div>Likes: ${im.numberLikes}</div>
                 <div>Comments: ${im.numberComments}</div>
+                <c:forEach var="comment" items="${im.comments}">
+                    <div>${comment.user.userName}: ${comment.text}</div>
+                </c:forEach>
             </td>
         </tr>
 </table>

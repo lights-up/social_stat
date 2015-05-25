@@ -173,8 +173,6 @@ public class User {
         user.setId(object.get("id").toString());
         user.setUserName(object.get("username").toString());
         user.setProfilePicture(object.get("profile_picture").toString());
-       // user.setWebSite(userObject.get("website").toString());
-        System.out.println(user.toString());
         return user;
     }
 }

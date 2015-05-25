@@ -52,7 +52,6 @@ public class TokenController extends HttpServlet {
             String feed = Request.Get(SELF_FEED+access_token).execute().returnContent().toString();
             JSONObject feedObject = (JSONObject) parser.parse(feed);
             List<Media> mediaList = Media.newMediaListInstance(feedObject);
-            System.out.println(mediaList.size());
             session.setAttribute("media", mediaList);
 
             request.getRequestDispatcher("/jsp/profile.jsp").forward(request, response);

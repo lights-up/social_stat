@@ -25,4 +25,5 @@
         <servlet-name>token-servlet</servlet-name>
         <url-pattern>/gettoken</url-pattern>
     </servlet-mapping>
+
 </web-app>
