@@ -1,5 +1,7 @@
 package by.lightsup.socialstat.entity;
 
+import org.json.simple.JSONObject;
+
 /**
  * Created by note on 23.05.2015.
  */
@@ -14,10 +16,10 @@ public class User {
     private int followedBy;
     private int follows;
 
-    public User() {
+    private User() {
     }
 
-    public User(String bio, int followedBy, int follows, String fullName, String id, int mediaNumber, String profilePicture, String userName, String webSite) {
+    private User(String bio, int followedBy, int follows, String fullName, String id, int mediaNumber, String profilePicture, String userName, String webSite) {
         this.bio = bio;
         this.followedBy = followedBy;
         this.follows = follows;
@@ -34,7 +36,7 @@ public class User {
     }
 
     public void setBio(String bio) {
-        if(bio == null) {
+        if(bio == null || "".equals(bio)) {
             this.bio = "none";
         }else{
             this.bio = bio;
@@ -164,5 +166,18 @@ public class User {
                 ", followedBy=" + followedBy +
                 ", follows=" + follows +
                 '}';
+    }
+
+    public static User newInstance(JSONObject object){
+        User user = new User();
+        JSONObject userObject = (JSONObject) object.get("user");
+        user.setId(userObject.get("id").toString());
+        user.setBio(userObject.get("bio").toString());
+        user.setUserName(userObject.get("username").toString());
+        user.setFullName(userObject.get("full_name").toString());
+        user.setProfilePicture(userObject.get("profile_picture").toString());
+       // user.setWebSite(userObject.get("website").toString());
+        System.out.println(user.toString());
+        return user;
     }
 }

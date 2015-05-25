@@ -1,0 +1,15 @@
+.index-background {
+    background-image: url("../jpg/bg.jpg");
+    background-size: cover;
+}
+.account-background{
+    background-image: url("../jpg/bg2.jpg");
+    background-size: cover;
+}
+.general_table {
+    width: 50%;
+    margin: 100px auto;
+    background: #f8f8f8;
+    border: 1px solid #255;
+    border-collapse: collapse;
+}

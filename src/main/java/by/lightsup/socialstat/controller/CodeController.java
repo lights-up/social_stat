@@ -1,6 +1,7 @@
 package by.lightsup.socialstat.controller;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,9 @@ import static java.lang.String.format;
 
 
 public class CodeController extends HttpServlet {
+    static{
+        PropertyConfigurator.configure("property/log4j.properties");
+    }
     private static final Logger LOG = Logger.getLogger(CodeController.class);
     //TODO:get from property file
     private static final String CLIENT_ID = "db7a523bcf7b411f94f477c83544269d";

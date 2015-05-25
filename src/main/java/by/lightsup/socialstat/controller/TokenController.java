@@ -1,14 +1,20 @@
 package by.lightsup.socialstat.controller;
 
 
+import by.lightsup.socialstat.entity.User;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.StringEntity;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static by.lightsup.socialstat.util.UrlUtil.*;
@@ -24,18 +30,26 @@ public class TokenController extends HttpServlet {
     private static final String GRANT = "authorization_code";
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String code = request.getParameter(RESPONSE_TYPE_CODE);
         String parameters = format(TOKEN_PARAMETERS_TEMPLATE, CLIENT_ID, CLIENT_SECRET, GRANT, REDIRECT_URI, code);
+        HttpSession session = request.getSession();
         try {
             HttpEntity entity = new StringEntity(parameters);
             String res = Request.Post(TOKEN_URL).body(entity).execute().returnContent().toString();
-            System.out.println(res);
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(res);
+            User user = User.newInstance(jsonObject);
+            session.setAttribute("user", user);
+            request.getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
+
         } catch (IOException e) {
             String message = "Exception occurred while getting token";
             LOG.error(message, e);
+        } catch (ParseException e) {
+            String message = "Exception occurred while parsing JSON";
+            LOG.error(message, e);
+
         }
-
     }
-
 }
