@@ -170,12 +170,9 @@ public class User {
 
     public static User newInstance(JSONObject object){
         User user = new User();
-        JSONObject userObject = (JSONObject) object.get("user");
-        user.setId(userObject.get("id").toString());
-        user.setBio(userObject.get("bio").toString());
-        user.setUserName(userObject.get("username").toString());
-        user.setFullName(userObject.get("full_name").toString());
-        user.setProfilePicture(userObject.get("profile_picture").toString());
+        user.setId(object.get("id").toString());
+        user.setUserName(object.get("username").toString());
+        user.setProfilePicture(object.get("profile_picture").toString());
        // user.setWebSite(userObject.get("website").toString());
         System.out.println(user.toString());
         return user;

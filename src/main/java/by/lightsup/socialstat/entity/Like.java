@@ -1,6 +1,12 @@
 package by.lightsup.socialstat.entity;
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Like {
     User fromUser;
 
@@ -42,5 +48,19 @@ public class Like {
         return "Like{" +
                 "fromUser=" + fromUser +
                 '}';
+    }
+
+    public static List<Like> newLikeListInstance(JSONObject likesObject) {
+        List<Like> likes = new ArrayList<Like>();
+        JSONArray array = (JSONArray) likesObject.get("data");
+        for (Object obj : array) {
+            JSONObject likeObject = (JSONObject) obj;
+            Like like = new Like();
+            User user = User.newInstance(likeObject);
+            like.setUser(user);
+            likes.add(like);
+        }
+        return likes;
+
     }
 }

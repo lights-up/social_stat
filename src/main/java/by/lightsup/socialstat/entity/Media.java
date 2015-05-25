@@ -1,5 +1,9 @@
 package by.lightsup.socialstat.entity;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,19 +12,20 @@ import java.util.List;
 public class Media {
     private String id;
     private MediaType mediaType;
+    private MediaContent mediaContent;
     private User user;
     private List<Comment> comments;
     private List<Like> likes;
 
-    public Media() {
+    private Media() {
     }
 
-    public Media(List<Comment> comments, String id, List<Like> likes, MediaType mediaType, User user) {
-        this.comments = comments;
-        this.id = id;
-        this.likes = likes;
-        this.mediaType = mediaType;
-        this.user = user;
+    public MediaContent getMediaContent() {
+        return mediaContent;
+    }
+
+    public void setMediaContent(MediaContent mediaContent) {
+        this.mediaContent = mediaContent;
     }
 
     public List<Comment> getComments() {
@@ -63,12 +68,20 @@ public class Media {
         this.user = user;
     }
 
-    public boolean addComment(Comment comment){
+    public boolean addComment(Comment comment) {
         return comments.add(comment);
     }
 
     public boolean addLikes(Like like) {
         return likes.add(like);
+    }
+
+    public int getNumberLikes() {
+        return likes.size();
+    }
+
+    public int getNumberComments() {
+        return comments.size();
     }
 
     @Override
@@ -105,5 +118,31 @@ public class Media {
                 ", user=" + user +
                 ", likes=" + likes +
                 '}';
+    }
+
+    public static List<Media> newMediaListInstance(JSONObject feedObject) {
+        List<Media> mediaList = new ArrayList<Media>();
+        JSONArray array = (JSONArray) feedObject.get("data");
+        for (Object data : array) {
+            JSONObject mediaObject = (JSONObject) data;
+            Media media = new Media();
+            media.setMediaType(MediaType.valueOf(mediaObject.get("type").toString().toUpperCase()));
+            JSONObject commnetObject = (JSONObject) mediaObject.get("comments");
+            JSONObject likeObject = (JSONObject) mediaObject.get("likes");
+
+            media.setComments(Comment.newCommentListInstance(commnetObject));
+            media.setLikes(Like.newLikeListInstance(likeObject));
+
+            //TODO: Dev MediaContentType
+            JSONObject imageObject = (JSONObject) mediaObject.get("images");
+            MediaContent mediaContent = MediaContent.newInstance(imageObject);
+            media.setMediaContent(mediaContent);
+            JSONObject userObject = (JSONObject) mediaObject.get("user");
+            media.setId(mediaObject.get("id").toString());
+            media.setUser(User.newInstance(userObject));
+            mediaList.add(media);
+        }
+
+        return mediaList;
     }
 }

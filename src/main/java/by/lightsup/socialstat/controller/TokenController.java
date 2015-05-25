@@ -1,6 +1,7 @@
 package by.lightsup.socialstat.controller;
 
 
+import by.lightsup.socialstat.entity.Media;
 import by.lightsup.socialstat.entity.User;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.fluent.Request;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 import static by.lightsup.socialstat.util.UrlUtil.*;
 import static java.lang.String.format;
@@ -39,8 +41,20 @@ public class TokenController extends HttpServlet {
             String res = Request.Post(TOKEN_URL).body(entity).execute().returnContent().toString();
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(res);
-            User user = User.newInstance(jsonObject);
+            JSONObject userObject = (JSONObject) jsonObject.get("user");
+
+            String access_token = jsonObject.get("access_token").toString();
+            User user = User.newInstance(userObject);
+
             session.setAttribute("user", user);
+            session.setAttribute("access_token", access_token);
+
+            String feed = Request.Get(SELF_FEED+access_token).execute().returnContent().toString();
+            JSONObject feedObject = (JSONObject) parser.parse(feed);
+            List<Media> mediaList = Media.newMediaListInstance(feedObject);
+            System.out.println(mediaList.size());
+            session.setAttribute("media", mediaList);
+
             request.getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
 
         } catch (IOException e) {

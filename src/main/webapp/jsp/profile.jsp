@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title></title>
@@ -7,30 +9,35 @@
     <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body class="account-background">
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4"></div>
-    </div>
-</div>
+
 <table class="general_table">
 
     <tr>
         <td><img src="${user.profilePicture}" border="2"></td>
         <td>
             <div>id:${user.id}</div>
-            <div>full name:${user.fullName}</div>
-            <div>bio:${user.bio}</div>
+            <div>Nick name:${user.userName}</div>
         </td>
         <td>
             <button class="btn btn-lg btn-info">Log out</button>
         </td>
     </tr>
 </table>
-
+<c:forEach var="im" items="${media}">
 <table class="general_table">
-
+        <tr>
+            <td><img src="${im.user.profilePicture}"><p align="center">${im.user.userName}</p></td>
+        </tr>
+        <tr>
+            <td><img src="${im.mediaContent.url}" width="${im.mediaContent.width}" height="${im.mediaContent.height}"></td>
+        </tr>
+        <tr>
+            <td>
+                <div>Likes: ${im.numberLikes}</div>
+                <div>Comments: ${im.numberComments}</div>
+            </td>
+        </tr>
 </table>
+</c:forEach>
 </body>
 </html>

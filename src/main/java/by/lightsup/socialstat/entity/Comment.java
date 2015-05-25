@@ -1,6 +1,12 @@
 package by.lightsup.socialstat.entity;
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Comment {
     private String id;
     private User user;
@@ -68,4 +74,22 @@ public class Comment {
                 ", text='" + text + '\'' +
                 '}';
     }
+
+    public static List<Comment> newCommentListInstance(JSONObject commentsObject) {
+        List<Comment> comments = new ArrayList<Comment>();
+        JSONArray array = (JSONArray) commentsObject.get("data");
+        for (Object obj : array) {
+            JSONObject commentObject = (JSONObject) obj;
+            Comment comment = new Comment();
+            comment.setId(commentObject.get("id").toString());
+            comment.setText(commentObject.get("text").toString());
+            JSONObject userObject = (JSONObject) commentObject.get("from");
+            User user = User.newInstance(userObject);
+            comment.setUser(user);
+            comments.add(comment);
+        }
+
+        return comments;
+    }
+
 }
