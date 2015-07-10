@@ -1,0 +1,35 @@
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'checkstyle'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    providedCompile "javax:javaee-web-api:6.0"
+    providedCompile "javax.servlet:jstl:1.2"
+    compile "com.googlecode.json-simple:json-simple:1.1.1"
+    compile "org.apache.httpcomponents:httpclient:4.4.1"
+    compile "log4j:log4j:1.2.17"
+    compile "org.apache.httpcomponents:fluent-hc:4.3.6"
+    compile "jstl:jstl:1.2"
+}
+     def checkstylePath = "$rootProject.projectDir/util/checkstyle"
+
+checkstyleMain {
+    configFile = new File(checkstylePath, "checkstyleMain.xml")
+}
+
+checkstyleTest {
+    configFile = new File(checkstylePath, "checkstyleTest.xml")
+}
+
+task wrapper (type: Wrapper) {
+    gradleVersion = "2.4"
+}
+
+

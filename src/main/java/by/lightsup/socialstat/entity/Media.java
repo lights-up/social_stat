@@ -133,7 +133,7 @@ public class Media {
             media.setComments(Comment.newCommentListInstance(commnetObject));
             media.setLikes(Like.newLikeListInstance(likeObject));
 
-            //TODO: Dev MediaContentType
+            //TODO(vlad): Dev MediaContentType
             JSONObject imageObject = (JSONObject) mediaObject.get("images");
             MediaContent mediaContent = MediaContent.newInstance(imageObject);
             media.setMediaContent(mediaContent);

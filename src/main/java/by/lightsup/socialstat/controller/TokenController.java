@@ -27,13 +27,11 @@ public class TokenController extends HttpServlet {
 
     private static final Logger LOG = Logger.getLogger(TokenController.class);
 
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         HttpSession session = request.getSession();
         try {
-            String res = getResultJson(request, response);
-            System.out.println(res);
+            String res = getResultJson(request);
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(res);
             JSONObject userObject = (JSONObject) jsonObject.get("user");

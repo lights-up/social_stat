@@ -12,6 +12,6 @@ public class CodeFilter extends AbstractFilter {
 
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
-        authorizeCodeRequest(request, response);
+        authorizeCodeRequest(response);
     }
 }

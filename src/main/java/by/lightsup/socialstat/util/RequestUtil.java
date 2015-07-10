@@ -22,7 +22,7 @@ public class RequestUtil {
         throw new AssertionError();
     }
 
-    public static void authorizeCodeRequest(HttpServletRequest request, HttpServletResponse response) {
+    public static void authorizeCodeRequest(HttpServletResponse response) {
         try {
             response.sendRedirect(response.encodeRedirectURL(instagramProperty.constructAuthorizeURL()));
         } catch (IOException e) {
@@ -31,7 +31,7 @@ public class RequestUtil {
         }
     }
 
-    public static String getResultJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public static String getResultJson(HttpServletRequest request) throws IOException {
         String responseCode = request.getParameter(instagramProperty.getResponseType());
         HttpEntity entity = new StringEntity(instagramProperty.constructTokenParameters(responseCode));
         String result = Post(instagramProperty.getTokenURL()).body(entity).execute().returnContent().toString();

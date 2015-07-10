@@ -19,7 +19,8 @@ public class User {
     private User() {
     }
 
-    private User(String bio, int followedBy, int follows, String fullName, String id, int mediaNumber, String profilePicture, String userName, String webSite) {
+    private User(String bio, int followedBy, int follows, String fullName, String id, int mediaNumber, String profilePicture, String userName,
+                 String webSite) {
         this.bio = bio;
         this.followedBy = followedBy;
         this.follows = follows;
@@ -36,9 +37,9 @@ public class User {
     }
 
     public void setBio(String bio) {
-        if(bio == null || "".equals(bio)) {
+        if (bio == null || "".equals(bio)) {
             this.bio = "none";
-        }else{
+        } else {
             this.bio = bio;
         }
     }
@@ -66,7 +67,7 @@ public class User {
     public void setFullName(String fullName) {
         if (fullName == null) {
             this.fullName = "none";
-        }else {
+        } else {
             this.fullName = fullName;
         }
     }
@@ -78,7 +79,7 @@ public class User {
     public void setId(String id) {
         if (id == null) {
             this.id = "none";
-        }else{
+        } else {
             this.id = id;
         }
     }
@@ -98,7 +99,7 @@ public class User {
     public void setProfilePicture(String profilePicture) {
         if (profilePicture == null) {
             this.profilePicture = "none";
-        }else{
+        } else {
             this.profilePicture = profilePicture;
         }
     }
@@ -168,7 +169,7 @@ public class User {
                 '}';
     }
 
-    public static User newInstance(JSONObject object){
+    public static User newInstance(JSONObject object) {
         User user = new User();
         user.setId(object.get("id").toString());
         user.setUserName(object.get("username").toString());
