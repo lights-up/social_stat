@@ -17,6 +17,8 @@ dependencies {
     compile "log4j:log4j:1.2.17"
     compile "org.apache.httpcomponents:fluent-hc:4.3.6"
     compile "jstl:jstl:1.2"
+    compile "org.apache.tiles:tiles-core:3.0.5"
+    compile "org.apache.tiles:tiles-extras:3.0.5"
 }
      def checkstylePath = "$rootProject.projectDir/util/checkstyle"
 
