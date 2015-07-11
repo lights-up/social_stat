@@ -6,6 +6,20 @@
         <welcome-file-list>
             <welcome-file>index.jsp</welcome-file>
         </welcome-file-list>
+        
+    <!-- Apache Tiles for building the jsp pages -->  
+    <listener>
+    	<listener-class>org.apache.tiles.web.startup.simple.SimpleTilesListener</listener-class>
+	</listener>  	
+	<servlet>
+    	<servlet-name>Tiles Dispatch Servlet</servlet-name>
+    	<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+   		<servlet-name>Tiles Dispatch Servlet</servlet-name>
+    	<url-pattern>*.tiles</url-pattern>
+	</servlet-mapping>
+
     <servlet>
         <servlet-name>code-servlet</servlet-name>
         <servlet-class>by.lightsup.socialstat.controller.CodeController</servlet-class>
@@ -25,5 +39,4 @@
         <servlet-name>token-servlet</servlet-name>
         <url-pattern>/gettoken</url-pattern>
     </servlet-mapping>
-
 </web-app>
