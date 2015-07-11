@@ -18,6 +18,8 @@
             <div>id:${user.id}</div>
             <div>Nick name:${user.userName}</div>
         </td>
+        
+        
         <td>
             <button class="btn btn-lg btn-info">Log out</button>
                 <button class="btn btn-lg btn-info">My photo</button>

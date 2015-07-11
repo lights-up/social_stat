@@ -1,6 +1,5 @@
 package by.lightsup.socialstat.entity;
 
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -8,59 +7,79 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Like {
-    User fromUser;
+	private String idLike;
+	private ShortUser user;
 
-    public Like() {
-    }
+	public Like() {
+	}
 
-    public Like(User fromUser) {
-        this.fromUser = fromUser;
-    }
+	public ShortUser getUser() {
+		return user;
+	}
 
-    public User getUser() {
-        return fromUser;
-    }
+	public void setUser(ShortUser fromUser) {
+		this.user = fromUser;
+	}
 
-    public void setUser(User fromUser) {
-        if (fromUser != null) {
-            this.fromUser = fromUser;
-        }
-    }
+	public String getId() {
+		return idLike;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public void setId(String idString) {
+		this.idLike = idString;
+	}
 
-        Like like = (Like) o;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idLike == null) ? 0 : idLike.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		return result;
+	}
 
-        return !(fromUser != null ? !fromUser.equals(like.fromUser) : like.fromUser != null);
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Like other = (Like) obj;
+		if (idLike == null) {
+			if (other.idLike != null)
+				return false;
+		} else if (!idLike.equals(other.idLike))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		return true;
+	}
 
-    }
+	/*
+	 * "username": "jack", "first_name": "Jack", "last_name": "Dorsey", "type":
+	 * "user", "id": "66"
+	 */
+	public static Like newInstance(JSONObject jsonObject) {
+		Like like = new Like();
+		like.setUser(ShortUser.newInstance(jsonObject));
+		like.setId(jsonObject.get("id").toString());
+		return like;
+	}
 
-    @Override
-    public int hashCode() {
-        return fromUser != null ? fromUser.hashCode() : 0;
-    }
+	public static List<Like> getLikesList(JSONArray jsonArray) {
+		List<Like> likes = new ArrayList<>();
+		Like like = null;
+		for (Object obj : jsonArray) {
+			JSONObject object = (JSONObject) obj;
+			like = Like.newInstance(object);
+			likes.add(like);
+		}
+		return likes;
+	}
 
-    @Override
-    public String toString() {
-        return "Like{" +
-                "fromUser=" + fromUser +
-                '}';
-    }
-
-    public static List<Like> newLikeListInstance(JSONObject likesObject) {
-        List<Like> likes = new ArrayList<Like>();
-        JSONArray array = (JSONArray) likesObject.get("data");
-        for (Object obj : array) {
-            JSONObject likeObject = (JSONObject) obj;
-            Like like = new Like();
-            User user = User.newInstance(likeObject);
-            like.setUser(user);
-            likes.add(like);
-        }
-        return likes;
-
-    }
 }

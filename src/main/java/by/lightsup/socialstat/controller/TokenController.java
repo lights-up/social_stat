@@ -2,7 +2,7 @@ package by.lightsup.socialstat.controller;
 
 
 import by.lightsup.socialstat.entity.Media;
-import by.lightsup.socialstat.entity.User;
+import by.lightsup.socialstat.entity.LargeUser;
 import org.apache.http.client.fluent.Request;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -36,8 +36,8 @@ public class TokenController extends HttpServlet {
             JSONObject jsonObject = (JSONObject) parser.parse(res);
             JSONObject userObject = (JSONObject) jsonObject.get("user");
 
-            String access_token = jsonObject.get("access_token").toString();
-            User user = User.newInstance(userObject);
+          /*  String access_token = jsonObject.get("access_token").toString();
+            LargeUser user = LargeUser.newInstance(userObject);
 
             session.setAttribute("user", user);
             session.setAttribute("access_token", access_token);
@@ -45,7 +45,7 @@ public class TokenController extends HttpServlet {
             String feed = Request.Get(SELF_FEED + access_token).execute().returnContent().toString();
             JSONObject feedObject = (JSONObject) parser.parse(feed);
             List<Media> mediaList = Media.newMediaListInstance(feedObject);
-            session.setAttribute("media", mediaList);
+            session.setAttribute("media", mediaList);*/
 
             request.getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
 
