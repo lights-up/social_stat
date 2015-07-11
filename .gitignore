@@ -1,6 +1,8 @@
 #Java
 *.class
 target
+bin
+2.5
 
 
 # Package Files #
