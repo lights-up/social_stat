@@ -1,9 +1,5 @@
 package by.lightsup.socialstat.controller;
 
-
-import by.lightsup.socialstat.entity.Media;
-import by.lightsup.socialstat.entity.LargeUser;
-import org.apache.http.client.fluent.Request;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,10 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 import static by.lightsup.socialstat.util.RequestUtil.getResultJson;
-import static by.lightsup.socialstat.util.UrlUtil.SELF_FEED;
 
 
 @WebServlet(urlPatterns = "/gettoken")

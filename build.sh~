@@ -1,0 +1,8 @@
+#!/bin/sh
+# usage: fsplit file1 file2
+
+mvn install;
+sh /home/uladzimir/apache-tomcat-7.0.62/bin/shutdown.sh;
+rm -rf /home/uladzimir/apache-tomcat-7.0.62/social_stat-1.0;
+cp /home/uladzimir/workspace/social_network_statistic/social_stat/target/testDir/social_stat-1.0.war /home/uladzimir/apache-tomcat-7.0.62/webapps/;
+sh /home/uladzimir/apache-tomcat-7.0.62/bin/startup.sh;
