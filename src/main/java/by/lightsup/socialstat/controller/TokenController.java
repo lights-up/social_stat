@@ -5,6 +5,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import by.lightsup.socialstat.entity.ShortUser;
+import by.lightsup.socialstat.exception.ServiceLayerException;
+import by.lightsup.socialstat.handler.StatisticHandler;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,14 +33,18 @@ public class TokenController extends HttpServlet {
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(res);
             JSONObject userObject = (JSONObject) jsonObject.get("user");
+            ShortUser user = ShortUser.newInstance(userObject);
+            String accessToken = jsonObject.get("access_token").toString();
+            try {
+				StatisticHandler.getUserStatistic(user.getId(), accessToken);
+			} catch (ServiceLayerException e) {
+				e.printStackTrace();
+			}
 
-          /*  String access_token = jsonObject.get("access_token").toString();
-            LargeUser user = LargeUser.newInstance(userObject);
+//            session.setAttribute("user", user);
+//            session.setAttribute("access_token", access_token);
 
-            session.setAttribute("user", user);
-            session.setAttribute("access_token", access_token);
-
-            String feed = Request.Get(SELF_FEED + access_token).execute().returnContent().toString();
+           /* String feed = Request.Get(SELF_FEED + access_token).execute().returnContent().toString();
             JSONObject feedObject = (JSONObject) parser.parse(feed);
             List<Media> mediaList = Media.newMediaListInstance(feedObject);
             session.setAttribute("media", mediaList);*/
