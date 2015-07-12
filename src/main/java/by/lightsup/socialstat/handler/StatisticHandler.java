@@ -21,18 +21,29 @@ public class StatisticHandler {
 
 	public static List<ShortUser> getUserStatistic(String idUser, String accessToken) throws ServiceLayerException {
 		List<ShortUser> users = null;
+		
 		StringBuilder largeUserRequest = new StringBuilder(TAKE_LARGE_USER.replace("{id-user}", idUser));
 		StringBuilder followsUserRequest = new StringBuilder(TAKE_USER_FOLLOWS.replace("{id-user}", idUser));
+		
 		largeUserRequest.append(accessToken);
 		followsUserRequest.append(accessToken);
 
 		String largeUser = null;
+		String followsUser = null;
+		
 		try {
-			largeUser = Request.Get(request.toString()).execute().returnContent().toString();
+			largeUser = Request.Get(largeUserRequest.toString()).execute().returnContent().toString();
+			followsUser = Request.Get(followsUserRequest.toString()).execute().returnContent().toString();
+		
 			JSONParser parser = new JSONParser();
+			
 			JSONObject largeUserObject = (JSONObject) parser.parse(largeUser);
-			LargeUser user = LargeUser.newInstance((JSONObject)largeUserObject.get("data"));
-			users = UserHandler.getUserFollows());
+			JSONObject followsUserObject = (JSONObject) parser.parse(followsUser);
+			
+			LargeUser user = LargeUser.newInstance((JSONObject) largeUserObject.get("data"));
+			
+			users = UserHandler.getUserFollows(followsUserObject);
+			
 		} catch (IOException e) {
 			LOG.error("Trouble with getting responce from Instagram.com", e);
 			throw new ServiceLayerException("Trouble with getting responce from Instagram.com", e);
