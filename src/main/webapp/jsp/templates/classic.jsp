@@ -15,15 +15,21 @@
   	<table width="1200px" align="center">
       		<tr>    
       			<!-- Personal Menu -->
-      			<td width="20%" align="center">
+      			<td width="20%" align="center" rowspan="3">
       				<tiles:insertAttribute name="menu" />  
       			</td> 
-      			<!-- Body of Page -->
+      			<!-- Current Profile -->
       			<td width="80%" align="center">   
-         			<tiles:insertAttribute name="body" />  
-        		</td>      
+         			<tiles:insertAttribute name="profile" />  
+        		</td>        		
       		</tr>
-    </table>
+      		<tr>
+    			<!-- The Body of Page -->
+      			<td align="center">   
+         			<tiles:insertAttribute name="body" />  
+        		</td> 
+    		</tr> 
+    </table>    
     	
    	<!-- Footer -->
   	<tiles:insertAttribute name="footer" />
