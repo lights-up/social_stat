@@ -14,6 +14,8 @@ bin
 #Gradle build output
 build/
 classes/
+!gradle-wrapper.jar
+.gradle
 
 #Eclipse files
 .classpath
