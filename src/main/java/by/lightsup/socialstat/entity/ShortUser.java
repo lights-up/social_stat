@@ -1,5 +1,9 @@
 package by.lightsup.socialstat.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class ShortUser {
@@ -47,7 +51,17 @@ public class ShortUser {
 		user.setProfilePicture(object.get("profile_picture").toString());
 		return user;
 	}
-
+	
+	public static List<ShortUser> getShortUserList(JSONArray jsonArray) {
+		List<ShortUser> users = new ArrayList<>();
+		ShortUser shortUser = new ShortUser();
+		for (Object obj : jsonArray) {
+			JSONObject object = (JSONObject) obj;
+			shortUser = ShortUser.newInstance(object);
+			users.add(shortUser);
+		}
+		return users;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

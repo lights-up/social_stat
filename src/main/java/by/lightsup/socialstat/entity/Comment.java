@@ -75,17 +75,10 @@ public class Comment {
         return true;
     }
 
-
-    /*
-     *  "created_time": "1280780324",
-            "text": "Really amazing photo!",
-            "from": {
-                "username": "snoopdogg",
-                "profile_picture": "http://images.instagram.com/profiles/profile_16_75sq_1305612434.jpg",
-                "id": "1574083",
-                "full_name": "Snoop Dogg"
-            },
-            "id": "420"
+    /**
+     * Make Comment from json object
+     * @param jsonObject 
+     * @return Comment with id and text
      */
     public static Comment newInstance(JSONObject jsonObject) {
         Comment comment = new Comment();
@@ -95,6 +88,10 @@ public class Comment {
         return comment;
     }
 
+    /**Make Comment list from json array
+     * @param jsonArray 
+     * @return List of Comments
+     */
     public static List<Comment> getListComments(JSONArray jsonArray) {
         List<Comment> comments = new ArrayList<>();
         Comment comment = null;
