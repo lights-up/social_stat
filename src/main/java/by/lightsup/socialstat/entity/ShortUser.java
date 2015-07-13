@@ -7,17 +7,17 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class ShortUser {
-	private String idUser;
+	private String id;
 	private String username;
 	private String profilePicture;
 	private String fullName;
 
 	public String getId() {
-		return idUser;
+		return id;
 	}
 
-	public void setId(String idUser) {
-		this.idUser = idUser;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -67,7 +67,7 @@ public class ShortUser {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
-		result = prime * result + ((idUser == null) ? 0 : idUser.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((profilePicture == null) ? 0 : profilePicture.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -87,10 +87,10 @@ public class ShortUser {
 				return false;
 		} else if (!fullName.equals(other.fullName))
 			return false;
-		if (idUser == null) {
-			if (other.idUser != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!idUser.equals(other.idUser))
+		} else if (!id.equals(other.id))
 			return false;
 		if (profilePicture == null) {
 			if (other.profilePicture != null)
@@ -107,7 +107,7 @@ public class ShortUser {
 
 	@Override
 	public String toString() {
-		return "ShortUser [idUser=" + idUser + ", username=" + username + ", profilePicture=" + profilePicture
+		return "ShortUser [idUser=" + id + ", username=" + username + ", profilePicture=" + profilePicture
 				+ ", fullName=" + fullName + "]";
 	}
 

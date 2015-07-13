@@ -1,15 +1,15 @@
 <table width="100%" class="table-profile">
 	<tr>
 		<td align="left" width="165px" rowspan="5">
-			<img style="-webkit-user-select: none" src="jpg/foto_profile.jpg">
+			<img style="-webkit-user-select: none" src="${user.profilePicture}">
 		</td>
 		<td>
-			<font face="verdana">id:</font>
+			<font face="verdana">id:${user.id}</font>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<font face="verdana">name:</font>
+			<font face="verdana">name:${user.username}</font>
 		</td>
 	</tr>
 	<tr>

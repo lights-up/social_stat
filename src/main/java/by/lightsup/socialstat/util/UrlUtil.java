@@ -9,8 +9,8 @@ public final class UrlUtil {
     public static final String AUTHORIZE_PARAMETERS_TEMPLATE = "?%s&%s&response_type=%s";
     public static final String TOKEN_PARAMETERS_TEMPLATE = "%s&%s&%s&%s&%s";
     public static final String SELF_FEED = "https://api.instagram.com/v1/users/self/feed/?access_token=";
-    public static final String TAKE_LARGE_USER = "https://api.instagram.com/v1/users/{user-id}/?access_token=";
-    public static final String TAKE_USER_FOLLOWS = "https://api.instagram.com/v1/users/{user-id}/follows?access_token=";
-    public static final String TAKE_USER_MEDIA = "https://api.instagram.com/v1/users/{user-id}/media/recent/?access_token=";
-    public static final String TAKE_MEDIA_LIKES = "https://api.instagram.com/v1/media/{media-id}/likes?access_token=";
+    public static final String LARGE_USER_REQUEST = "https://api.instagram.com/v1/users/%s/?access_token=%s";
+    public static final String USER_FOLLOWS_REQUEST = "https://api.instagram.com/v1/users/%s/follows?access_token=%s";
+    public static final String USER_MEDIA_REQUEST = "https://api.instagram.com/v1/users/%s/media/recent/?access_token=%s";
+    public static final String MEDIA_LIKES_REQUEST = "https://api.instagram.com/v1/media/%s/likes?access_token=%s";
 }
