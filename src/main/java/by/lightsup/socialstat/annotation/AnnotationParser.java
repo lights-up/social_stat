@@ -12,7 +12,7 @@ public class AnnotationParser<T> {
     private static final String NEW_INSTANCE_METHOD_NAME = "newInstance";
 
     /**
-     * Method using reflection to invoke method from controller e.g. InstagramController according to the request path.
+     * Method using rclasseflection to invoke method from controller e.g. InstagramController according to the request path.
      *
      * @param clazz controller class e.g. InstagramController
      * @param request request
