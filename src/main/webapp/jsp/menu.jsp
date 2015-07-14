@@ -13,7 +13,7 @@
 	</tr>
 	<tr>
 		<td>
-			<button class="btn-menu-lightsup">My Followers</button>
+			<a class="btn-menu-lightsup" href="/watch/followers">My Followers</a>
 			<br>
 		</td>
 	</tr>

@@ -3,12 +3,17 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition name="profile" template="/jsp/templates/classic.jsp">
-    <put-attribute name="title" value="Tiles tutorial homepage" />
-    <put-attribute name="navMenu" value="/jsp/header/header.jsp" />
-    <put-attribute name="menu" value="/jsp/menu.jsp" />
-    <put-attribute name="profile" value="/jsp/profile.jsp" />
-    <put-attribute name="body" value="/jsp/body.jsp" />
-    <put-attribute name="footer" value="/jsp/footer/footer.jsp" />
-  </definition>
+    <definition name="profile" template="/jsp/templates/classic.jsp">
+        <put-attribute name="title" value="Tiles tutorial homepage" />
+        <put-attribute name="navMenu" value="/jsp/header/header.jsp" />
+        <put-attribute name="menu" value="/jsp/menu.jsp" />
+        <put-attribute name="profile" value="/jsp/profile.jsp" />
+        <put-attribute name="body" value="/jsp/body.jsp" />
+        <put-attribute name="footer" value="/jsp/footer/footer.jsp" />
+    </definition>
+
+    <definition name="followers" extends="profile">
+          <put-attribute name="body" value="/jsp/followersBody.jsp"/>
+    </definition>
+
 </tiles-definitions>
