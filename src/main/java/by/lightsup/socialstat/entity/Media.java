@@ -95,16 +95,24 @@ public class Media {
         return true;
     }
 
+    /**Make instance of Media from JSONObject
+     * @param jsonObject JSONObject 
+     * @return Instance of Media
+     */
     public static Media newInstance(JSONObject jsonObject) {
         Media media = new Media();
         media.setIdMedia(jsonObject.get("id").toString());
         media.setUser(ShortUser.newInstance((JSONObject) jsonObject.get("user")));
-        media.setLikes(Like.getLikesList((JSONArray) ((JSONObject) jsonObject.get("likes")).get("data")));
-        media.setComments(Comment.getListComments((JSONArray) ((JSONObject) jsonObject.get("comments")).get("data")));
+        media.setLikes(Like.getList((JSONArray) ((JSONObject) jsonObject.get("likes")).get("data")));
+        media.setComments(Comment.getList((JSONArray) ((JSONObject) jsonObject.get("comments")).get("data")));
         return media;
     }
-
-    public static List<Media> getMediaList(JSONArray jsonArray) {
+    
+    /**Make Media list from json array
+     * @param jsonArray 
+     * @return List of Media
+     */
+    public static List<Media> getList(JSONArray jsonArray) {
         List<Media> mediaList = new ArrayList<>();
         Media media = null;
         for (Object obj : jsonArray) {

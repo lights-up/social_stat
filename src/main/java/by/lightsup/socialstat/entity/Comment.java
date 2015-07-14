@@ -92,7 +92,7 @@ public class Comment {
      * @param jsonArray 
      * @return List of Comments
      */
-    public static List<Comment> getListComments(JSONArray jsonArray) {
+    public static List<Comment> getList(JSONArray jsonArray) {
         List<Comment> comments = new ArrayList<>();
         Comment comment = null;
         for (Object obj : jsonArray) {

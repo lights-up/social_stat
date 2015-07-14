@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
-import static by.lightsup.socialstat.entity.ShortUser.getShortUserList;
+import static by.lightsup.socialstat.entity.ShortUser.getList;
 import static by.lightsup.socialstat.util.UrlUtil.USER_FOLLOWS_REQUEST;
 import static java.lang.String.format;
 import static org.apache.http.client.fluent.Request.Get;
@@ -21,7 +21,7 @@ public class FollowsHandler extends AbstractHandler<ShortUser> {
 
     @Override
     public List<ShortUser> handle(JSONObject jsonObject) {
-        return getShortUserList((JSONArray) jsonObject.get("data"));
+        return getList((JSONArray) jsonObject.get("data"));
     }
 
     @Override

@@ -44,6 +44,11 @@ public class ShortUser {
 		this.fullName = fullName;
 	}
 
+	/**
+	 * Create instance of ShortUser from JSONObject
+	 * @param object JSONObject
+	 * @return Instance of ShortUser parsed from String
+	 */
 	public static ShortUser newInstance(JSONObject object) {
 		ShortUser user = new ShortUser();
 		user.setId(object.get("id").toString());
@@ -52,7 +57,11 @@ public class ShortUser {
 		return user;
 	}
 	
-	public static List<ShortUser> getShortUserList(JSONArray jsonArray) {
+	 /**Make ShortUser list from json array
+     * @param jsonArray 
+     * @return List of ShortUser
+     */
+	public static List<ShortUser> getList(JSONArray jsonArray) {
 		List<ShortUser> users = new ArrayList<>();
 		ShortUser shortUser = new ShortUser();
 		for (Object obj : jsonArray) {

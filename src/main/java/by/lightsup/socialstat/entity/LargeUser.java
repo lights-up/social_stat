@@ -137,18 +137,11 @@ public class LargeUser {
 		return true;
 	}
 
-	/*
-	 * "id": "1574083", 
-	 * "username": "snoopdogg",
-	 * "full_name": "Snoop Dogg",
-	 * "profile_picture":"http://distillery.s3.amazonaws.com/profiles/profile_1574083_75sq_1295469061.jpg",
-	 * "bio": "This is my bio",
-	 *  "website": "http://snoopdogg.com", 
-	 *  "counts": {
-	 * 			"media": 1320, 
-	 * 			"follows": 420, 
-	 * 			"followed_by": 3410 
-	 * 			}
+
+	/**
+	 * Create instance of LargeUser from JSONObject
+	 * @param object JSONObject
+	 * @return Instance of LargeUser parsed from String
 	 */
 	public static LargeUser newInstance(JSONObject object) {
 		LargeUser user = new LargeUser();

@@ -64,14 +64,22 @@ public class Like {
 	 * "username": "jack", "first_name": "Jack", "last_name": "Dorsey", "type":
 	 * "user", "id": "66"
 	 */
+	/**
+     * Make Like from json object
+     * @param jsonObject 
+     * @return Like from json object
+     */
 	public static Like newInstance(JSONObject jsonObject) {
 		Like like = new Like();
 		like.setUser(ShortUser.newInstance(jsonObject));
 		like.setId(jsonObject.get("id").toString());
 		return like;
 	}
-
-	public static List<Like> getLikesList(JSONArray jsonArray) {
+	/**Make Like list from json array
+     * @param jsonArray 
+     * @return List of Like
+     */
+	public static List<Like> getList(JSONArray jsonArray) {
 		List<Like> likes = new ArrayList<>();
 		Like like = null;
 		for (Object obj : jsonArray) {

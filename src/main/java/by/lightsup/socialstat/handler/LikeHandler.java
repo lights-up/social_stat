@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
-import static by.lightsup.socialstat.entity.Like.getLikesList;
+import static by.lightsup.socialstat.entity.Like.getList;
 import static by.lightsup.socialstat.util.UrlUtil.MEDIA_LIKES_REQUEST;
 import static java.lang.String.format;
 import static org.apache.http.client.fluent.Request.Get;
@@ -21,7 +21,7 @@ public class LikeHandler extends AbstractHandler<Like> {
 
     @Override
     public List<Like> handle(JSONObject jsonObject) {
-        return getLikesList((JSONArray) jsonObject.get("data"));
+        return getList((JSONArray) jsonObject.get("data"));
     }
 
     @Override
