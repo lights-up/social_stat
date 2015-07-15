@@ -6,9 +6,6 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by note on 24.05.2015.
- */
 public class Media {
     private String idMedia;
     private ShortUser user;
@@ -18,6 +15,33 @@ public class Media {
     private Media() {
         likes = new ArrayList<>();
         comments = new ArrayList<>();
+    }
+
+
+    /**Make instance of Media from JSONObject
+     * @param jsonObject JSONObject
+     * @return Instance of Media
+     */
+    public static Media newInstance(JSONObject jsonObject) {
+        Media media = new Media();
+        media.setIdMedia(jsonObject.get("id").toString());
+        media.setUser(ShortUser.newInstance((JSONObject) jsonObject.get("user")));
+        media.setLikes(Like.getList((JSONArray) ((JSONObject) jsonObject.get("likes")).get("data")));
+        media.setComments(Comment.getList((JSONArray) ((JSONObject) jsonObject.get("comments")).get("data")));
+        return media;
+    }
+
+    /**Make Media list from json array
+     * @param jsonArray
+     * @return List of Media
+     */
+    public static List<Media> getList(JSONArray jsonArray) {
+        List<Media> mediaList = new ArrayList<>();
+        for (Object obj : jsonArray) {
+            mediaList.add(newInstance((JSONObject) obj));
+        }
+        return mediaList;
+
     }
 
     public String getIdMedia() {
@@ -94,34 +118,4 @@ public class Media {
             return false;
         return true;
     }
-
-    /**Make instance of Media from JSONObject
-     * @param jsonObject JSONObject 
-     * @return Instance of Media
-     */
-    public static Media newInstance(JSONObject jsonObject) {
-        Media media = new Media();
-        media.setIdMedia(jsonObject.get("id").toString());
-        media.setUser(ShortUser.newInstance((JSONObject) jsonObject.get("user")));
-        media.setLikes(Like.getList((JSONArray) ((JSONObject) jsonObject.get("likes")).get("data")));
-        media.setComments(Comment.getList((JSONArray) ((JSONObject) jsonObject.get("comments")).get("data")));
-        return media;
-    }
-    
-    /**Make Media list from json array
-     * @param jsonArray 
-     * @return List of Media
-     */
-    public static List<Media> getList(JSONArray jsonArray) {
-        List<Media> mediaList = new ArrayList<>();
-        Media media = null;
-        for (Object obj : jsonArray) {
-            JSONObject object = (JSONObject) obj;
-            media = Media.newInstance(object);
-            mediaList.add(media);
-        }
-        return mediaList;
-
-    }
-
 }

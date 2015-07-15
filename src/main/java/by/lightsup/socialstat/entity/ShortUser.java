@@ -1,7 +1,11 @@
 package by.lightsup.socialstat.entity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,6 +15,31 @@ public class ShortUser {
 	private String username;
 	private String profilePicture;
 	private String fullName;
+
+	/**
+	 * Create instance of ShortUser from JSONObject
+	 * @param object JSONObject
+	 * @return Instance of ShortUser parsed from String
+	 */
+	public static ShortUser newInstance(JSONObject object) {
+		ShortUser user = new ShortUser();
+		user.setId(object.get("id").toString());
+		user.setUsername(object.get("username").toString());
+		user.setProfilePicture(object.get("profile_picture").toString());
+		return user;
+	}
+
+	/**Make ShortUser list from json array
+	 * @param jsonArray
+	 * @return List of ShortUser
+	 */
+	public static List<ShortUser> getList(JSONArray jsonArray) {
+        List<ShortUser> users = new ArrayList<>();
+		for (Object obj : jsonArray) {
+			users.add(newInstance((JSONObject) obj));
+		}
+		return users;
+	}
 
 	public String getId() {
 		return id;
@@ -44,33 +73,6 @@ public class ShortUser {
 		this.fullName = fullName;
 	}
 
-	/**
-	 * Create instance of ShortUser from JSONObject
-	 * @param object JSONObject
-	 * @return Instance of ShortUser parsed from String
-	 */
-	public static ShortUser newInstance(JSONObject object) {
-		ShortUser user = new ShortUser();
-		user.setId(object.get("id").toString());
-		user.setUsername(object.get("username").toString());
-		user.setProfilePicture(object.get("profile_picture").toString());
-		return user;
-	}
-	
-	 /**Make ShortUser list from json array
-     * @param jsonArray 
-     * @return List of ShortUser
-     */
-	public static List<ShortUser> getList(JSONArray jsonArray) {
-		List<ShortUser> users = new ArrayList<>();
-		ShortUser shortUser = new ShortUser();
-		for (Object obj : jsonArray) {
-			JSONObject object = (JSONObject) obj;
-			shortUser = ShortUser.newInstance(object);
-			users.add(shortUser);
-		}
-		return users;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

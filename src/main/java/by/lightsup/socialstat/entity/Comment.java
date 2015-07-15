@@ -1,6 +1,3 @@
-/**
- *
- */
 package by.lightsup.socialstat.entity;
 
 import java.util.ArrayList;
@@ -13,6 +10,31 @@ public class Comment {
     private String idComment;
     private String text;
     private ShortUser user;
+
+    /**
+     * Make Comment from json object
+     * @param jsonObject
+     * @return Comment with id and text
+     */
+    public static Comment newInstance(JSONObject jsonObject) {
+        Comment comment = new Comment();
+        comment.setIdComment(jsonObject.get("id").toString());
+        comment.setText(jsonObject.get("text").toString());
+        comment.setUser(ShortUser.newInstance((JSONObject) jsonObject.get("from")));
+        return comment;
+    }
+
+    /**Make Comment list from json array
+     * @param jsonArray
+     * @return List of Comments
+     */
+    public static List<Comment> getList(JSONArray jsonArray) {
+        List<Comment> comments = new ArrayList<>();
+        for (Object obj : jsonArray) {
+            comments.add(newInstance((JSONObject) obj));
+        }
+        return comments;
+    }
 
     public String getIdComment() {
         return idComment;
@@ -73,33 +95,5 @@ public class Comment {
         } else if (!user.equals(other.user))
             return false;
         return true;
-    }
-
-    /**
-     * Make Comment from json object
-     * @param jsonObject 
-     * @return Comment with id and text
-     */
-    public static Comment newInstance(JSONObject jsonObject) {
-        Comment comment = new Comment();
-        comment.setIdComment(jsonObject.get("id").toString());
-        comment.setText(jsonObject.get("text").toString());
-        comment.setUser(ShortUser.newInstance((JSONObject) jsonObject.get("from")));
-        return comment;
-    }
-
-    /**Make Comment list from json array
-     * @param jsonArray 
-     * @return List of Comments
-     */
-    public static List<Comment> getList(JSONArray jsonArray) {
-        List<Comment> comments = new ArrayList<>();
-        Comment comment = null;
-        for (Object obj : jsonArray) {
-            JSONObject object = (JSONObject) obj;
-            comment = Comment.newInstance(object);
-            comments.add(comment);
-        }
-        return comments;
     }
 }

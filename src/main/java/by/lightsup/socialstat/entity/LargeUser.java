@@ -2,9 +2,6 @@ package by.lightsup.socialstat.entity;
 
 import org.json.simple.JSONObject;
 
-/**
- * Created by note on 23.05.2015.
- */
 public class LargeUser {
 	private String idUser;
 	private String username;
@@ -14,7 +11,22 @@ public class LargeUser {
 	private int followedBy;
 	private int follows;
 
-	private LargeUser() {
+	/**
+	 * Create instance of LargeUser from JSONObject
+	 * @param jsonObject JSONObject
+	 * @return Instance of LargeUser parsed from String
+	 */
+	public static LargeUser newInstance(JSONObject jsonObject) {
+		JSONObject object = (JSONObject) jsonObject.get("data");
+		LargeUser user = new LargeUser();
+		user.setId(object.get("id").toString());
+		user.setUsername(object.get("username").toString());
+		user.setProfilePicture(object.get("profile_picture").toString());
+		JSONObject countsObject = (JSONObject) object.get("counts");
+		user.setFollows(Integer.valueOf(countsObject.get("follows").toString()));
+		user.setFollowedBy(Integer.valueOf(countsObject.get("followed_by").toString()));
+		user.setMediaNumber(Integer.valueOf(countsObject.get("media").toString()));
+		return user;
 	}
 
 	public int getFollowedBy() {
@@ -135,23 +147,5 @@ public class LargeUser {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
-	}
-
-
-	/**
-	 * Create instance of LargeUser from JSONObject
-	 * @param object JSONObject
-	 * @return Instance of LargeUser parsed from String
-	 */
-	public static LargeUser newInstance(JSONObject object) {
-		LargeUser user = new LargeUser();
-		user.setId(object.get("id").toString());
-		user.setUsername(object.get("username").toString());
-		user.setProfilePicture(object.get("profile_picture").toString());
-		JSONObject jsonObject = (JSONObject) object.get("counts");
-		user.setFollows(Integer.valueOf(jsonObject.get("follows").toString()));
-		user.setFollowedBy(Integer.valueOf(jsonObject.get("followed_by").toString()));
-		user.setMediaNumber(Integer.valueOf(jsonObject.get("media").toString()));
-		return user;
 	}
 }

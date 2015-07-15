@@ -10,7 +10,27 @@ public class Like {
 	private String idLike;
 	private ShortUser user;
 
-	public Like() {
+	/**
+	 * Make Like from json object
+	 * @param jsonObject
+	 * @return Like from json object
+	 */
+	public static Like newInstance(JSONObject jsonObject) {
+		Like like = new Like();
+		like.setUser(ShortUser.newInstance(jsonObject));
+		like.setId(jsonObject.get("id").toString());
+		return like;
+	}
+	/**Make Like list from json array
+	 * @param jsonArray
+	 * @return List of Like
+	 */
+	public static List<Like> getList(JSONArray jsonArray) {
+		List<Like> likes = new ArrayList<>();
+		for (Object obj : jsonArray) {
+			likes.add(newInstance((JSONObject) obj));
+		}
+		return likes;
 	}
 
 	public ShortUser getUser() {
@@ -59,35 +79,4 @@ public class Like {
 			return false;
 		return true;
 	}
-
-	/*
-	 * "username": "jack", "first_name": "Jack", "last_name": "Dorsey", "type":
-	 * "user", "id": "66"
-	 */
-	/**
-     * Make Like from json object
-     * @param jsonObject 
-     * @return Like from json object
-     */
-	public static Like newInstance(JSONObject jsonObject) {
-		Like like = new Like();
-		like.setUser(ShortUser.newInstance(jsonObject));
-		like.setId(jsonObject.get("id").toString());
-		return like;
-	}
-	/**Make Like list from json array
-     * @param jsonArray 
-     * @return List of Like
-     */
-	public static List<Like> getList(JSONArray jsonArray) {
-		List<Like> likes = new ArrayList<>();
-		Like like = null;
-		for (Object obj : jsonArray) {
-			JSONObject object = (JSONObject) obj;
-			like = Like.newInstance(object);
-			likes.add(like);
-		}
-		return likes;
-	}
-
 }
