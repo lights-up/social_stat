@@ -3,6 +3,7 @@ package by.lightsup.socialstat.entity;
 import org.json.simple.JSONObject;
 
 public class LargeUser {
+
 	private String idUser;
 	private String username;
 	private String profilePicture;

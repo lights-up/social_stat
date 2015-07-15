@@ -4,9 +4,11 @@ import by.lightsup.socialstat.entity.Media;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static by.lightsup.socialstat.entity.Media.newInstance;
 import static by.lightsup.socialstat.util.StringUtil.ACCESS_TOKEN_PARAMETER;
 import static by.lightsup.socialstat.util.StringUtil.USER_ID_PARAMETER;
 import static by.lightsup.socialstat.util.UrlUtil.USER_MEDIA_REQUEST;
@@ -17,7 +19,11 @@ public class MediaBuilder extends AbstractBuilder<Media> {
     @Override
     public List<Media> getList(JSONObject jsonObject) {
         JSONArray jsonArray = (JSONArray) jsonObject.get("data");
-        return Media.getList(jsonArray);
+        List<Media> mediaList = new ArrayList<>();
+        for (Object obj : jsonArray) {
+            mediaList.add(newInstance((JSONObject) obj));
+        }
+        return mediaList;
     }
 
     @Override

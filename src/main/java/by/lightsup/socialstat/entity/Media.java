@@ -1,5 +1,7 @@
 package by.lightsup.socialstat.entity;
 
+import by.lightsup.socialstat.builder.CommentBuilder;
+import by.lightsup.socialstat.builder.LikeBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -26,22 +28,9 @@ public class Media {
         Media media = new Media();
         media.setIdMedia(jsonObject.get("id").toString());
         media.setUser(ShortUser.newInstance((JSONObject) jsonObject.get("user")));
-        media.setLikes(Like.getList((JSONArray) ((JSONObject) jsonObject.get("likes")).get("data")));
-        media.setComments(Comment.getList((JSONArray) ((JSONObject) jsonObject.get("comments")).get("data")));
+        media.setLikes(new LikeBuilder().getList((JSONObject) jsonObject.get("likes")));
+        media.setComments(new CommentBuilder().getList((JSONObject) jsonObject.get("comments")));
         return media;
-    }
-
-    /**Make Media list from json array
-     * @param jsonArray
-     * @return List of Media
-     */
-    public static List<Media> getList(JSONArray jsonArray) {
-        List<Media> mediaList = new ArrayList<>();
-        for (Object obj : jsonArray) {
-            mediaList.add(newInstance((JSONObject) obj));
-        }
-        return mediaList;
-
     }
 
     public String getIdMedia() {

@@ -16,4 +16,7 @@
           <put-attribute name="body" value="/jsp/followersBody.jsp"/>
     </definition>
 
+    <definition name="followed-by" extends="profile">
+        <put-attribute name="body" value="/jsp/followedByBody.jsp"/>
+    </definition>
 </tiles-definitions>

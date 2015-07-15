@@ -1,6 +1,7 @@
 package by.lightsup.socialstat.controller;
 
 import by.lightsup.socialstat.annotation.RequestMapping;
+import by.lightsup.socialstat.builder.FollowedByBuilder;
 import by.lightsup.socialstat.builder.FollowsBuilder;
 import by.lightsup.socialstat.entity.ShortUser;
 import by.lightsup.socialstat.entity.requestor.EntityRequestor;
@@ -35,18 +36,34 @@ public class InstagramController extends HttpServlet {
         return new InstagramController();
     }
 
-    @RequestMapping(path = "/followers")
+    @RequestMapping(path = "/follow")
     public void getFollowersPage(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();
             String userId = (String) session.getAttribute(USER_ID_PARAMETER);
             String accessToken = (String) session.getAttribute(ACCESS_TOKEN_PARAMETER);
             Map<String, String> parameters = ImmutableMap.of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
-            List<ShortUser> followers = new EntityRequestor<>(new SimpleParser(), new FollowsBuilder(), parameters).getEntityList();
-            session.setAttribute("followers", followers);
+            List<ShortUser> follow = new EntityRequestor<>(new SimpleParser(), new FollowsBuilder(), parameters).getEntityList();
+            session.setAttribute("follow", follow);
             response.sendRedirect("/followers.tiles");
         } catch (IOException e) {
             String message = "Exception occurred while getting followers";
+            LOG.error(message, e);
+        }
+    }
+
+    @RequestMapping(path = "/followed-by")
+    public void getFollowedByPage(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            HttpSession session = request.getSession();
+            String userId = (String) session.getAttribute(USER_ID_PARAMETER);
+            String accessToken = (String) session.getAttribute(ACCESS_TOKEN_PARAMETER);
+            Map<String, String> parameters = ImmutableMap.of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
+            List<ShortUser> followedBy = new EntityRequestor<>(new SimpleParser(), new FollowedByBuilder(), parameters).getEntityList();
+            session.setAttribute("followedBy", followedBy);
+            response.sendRedirect("/followed-by.tiles");
+        } catch (IOException e) {
+            String message = "Exception occurred while getting followers by users";
             LOG.error(message, e);
         }
     }

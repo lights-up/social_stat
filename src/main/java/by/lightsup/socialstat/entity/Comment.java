@@ -1,9 +1,5 @@
 package by.lightsup.socialstat.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Comment {
@@ -22,18 +18,6 @@ public class Comment {
         comment.setText(jsonObject.get("text").toString());
         comment.setUser(ShortUser.newInstance((JSONObject) jsonObject.get("from")));
         return comment;
-    }
-
-    /**Make Comment list from json array
-     * @param jsonArray
-     * @return List of Comments
-     */
-    public static List<Comment> getList(JSONArray jsonArray) {
-        List<Comment> comments = new ArrayList<>();
-        for (Object obj : jsonArray) {
-            comments.add(newInstance((JSONObject) obj));
-        }
-        return comments;
     }
 
     public String getIdComment() {

@@ -29,18 +29,6 @@ public class ShortUser {
 		return user;
 	}
 
-	/**Make ShortUser list from json array
-	 * @param jsonArray
-	 * @return List of ShortUser
-	 */
-	public static List<ShortUser> getList(JSONArray jsonArray) {
-        List<ShortUser> users = new ArrayList<>();
-		for (Object obj : jsonArray) {
-			users.add(newInstance((JSONObject) obj));
-		}
-		return users;
-	}
-
 	public String getId() {
 		return id;
 	}

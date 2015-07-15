@@ -1,7 +1,7 @@
 <table>
 	<tr>
 		<td width=100%>
-			<button class="btn-menu-lightsup">My Profile</button>
+			<a class="btn-menu-lightsup" href="/profile.tiles">My Profile</a>
 			<br>
 		</td>
 	</tr>
@@ -13,13 +13,13 @@
 	</tr>
 	<tr>
 		<td>
-			<a class="btn-menu-lightsup" href="/watch/followers">My Followers</a>
+			<a class="btn-menu-lightsup" href="/watch/follow">My Followers</a>
 			<br>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<button class="btn-menu-lightsup">I Follow</button>
+			<a class="btn-menu-lightsup" href="/watch/followed-by">I Follow</a>
 			<br>
 		</td>
 	</tr>
