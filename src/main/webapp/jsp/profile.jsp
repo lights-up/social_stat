@@ -14,17 +14,17 @@
 	</tr>
 	<tr>
 		<td>
-			<font face="verdana">posts:</font>
+			<font face="verdana">posts:${user.mediaNumber}</font>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<font face="verdana">followers:</font>
+			<font face="verdana">followers:${user.follows}</font>
 		</td colspan="3">
 	</tr>
 	<tr>
 		<td>
-			<font face="verdana">followed by:</font>
+			<font face="verdana">followed by:${user.followedBy}</font>
 		</td>
 	</tr>	
 </table>

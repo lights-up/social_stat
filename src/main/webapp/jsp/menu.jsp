@@ -7,7 +7,7 @@
 	</tr>
 	<tr>
 		<td>
-			<button class="btn-menu-lightsup">Feed</button>
+			<button class="btn-menu-lightsup">My Statistic</button>
 			<br>
 		</td>
 	</tr>

@@ -4,19 +4,26 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
     <definition name="profile" template="/jsp/templates/classic.jsp">
-        <put-attribute name="title" value="Tiles tutorial homepage" />
+        <put-attribute name="title" value="profile" />
         <put-attribute name="navMenu" value="/jsp/header/header.jsp" />
         <put-attribute name="menu" value="/jsp/menu.jsp" />
         <put-attribute name="profile" value="/jsp/profile.jsp" />
-        <put-attribute name="body" value="/jsp/body.jsp" />
+        <put-attribute name="body" value="/jsp/feed.jsp" />
         <put-attribute name="footer" value="/jsp/footer/footer.jsp" />
     </definition>
 
     <definition name="followers" extends="profile">
-          <put-attribute name="body" value="/jsp/followersBody.jsp"/>
+        <put-attribute name="title" value="followers" />
+        <put-attribute name="body" value="/jsp/users_list.jsp" />
     </definition>
 
     <definition name="followed-by" extends="profile">
-        <put-attribute name="body" value="/jsp/followedByBody.jsp"/>
+        <put-attribute name="title" value="followed-by" />
+        <put-attribute name="body" value="/jsp/users_list.jsp" />
+    </definition>
+    
+    <definition name="statistic" extends="profile">
+    	<put-attribute name="title" value="statistic" />
+        <put-attribute name="body" value="/jsp/statistic.jsp" />
     </definition>
 </tiles-definitions>
