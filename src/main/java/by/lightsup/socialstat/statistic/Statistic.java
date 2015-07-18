@@ -12,7 +12,6 @@ import by.lightsup.socialstat.parser.SimpleParser;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,34 +27,36 @@ public class Statistic {
 	 * @return sorted list of users
 	 */
 	public List<LargeUserWithCoeff> getStatistic(Map<String, String> parameters) {
-		List<ShortUser> follows = new EntityRequestor<>(new SimpleParser(), new FollowsBuilder(), parameters).getEntityList();
+		List<ShortUser> follows = new EntityRequestor<>(new SimpleParser(), new FollowsBuilder(), parameters)
+				.getEntityList();
 		List<LargeUserWithCoeff> usersWithCoeffs = new ArrayList<>();
 		for (ShortUser shortUser : follows) {
 			parameters.put("userId", shortUser.getId());
 			LargeUserVO userVO = LargeUserVO.newInstance(parameters);
 			usersWithCoeffs.add(createLargeUserWithCoeff(userVO));
 		}
-		usersWithCoeffs.sort((LargeUserWithCoeff a, LargeUserWithCoeff b) -> Double.compare(a.getCoeff(), b.getCoeff()));
+		usersWithCoeffs.sort((a, b) -> Double.compare(a.getCoeff(), b.getCoeff()));
 		return usersWithCoeffs;
- 	}
-	
-	private LargeUserWithCoeff createLargeUserWithCoeff(LargeUserVO userVO){
+	}
+
+	private LargeUserWithCoeff createLargeUserWithCoeff(LargeUserVO userVO) {
 		LargeUserWithCoeff userWithCoeff = new LargeUserWithCoeff();
 		List<Media> mediaList = userWithCoeff.getUser().getMediaList();
 		int i = 0;
 		for (Media media : mediaList) {
-			if(isLikedByUser(userVO.getUser().getId(), media)){
+			if (isLikedByUser(userVO.getUser().getId(), media)) {
 				++i;
 			}
 		}
-		userWithCoeff.setCoeff(i/mediaList.size());
+		userWithCoeff.setUser(userVO);
+		userWithCoeff.setCoeff(i / mediaList.size());
 		return userWithCoeff;
 	}
 
 	private boolean isLikedByUser(String userId, Media media) {
 		boolean flaq = false;
 		for (Like like : media.getLikes()) {
-			if(like.getUser().getId().equals(userId)){
+			if (like.getUser().getId().equals(userId)) {
 				flaq = true;
 			}
 		}
