@@ -3,10 +3,11 @@ package by.lightsup.socialstat.controller;
 import by.lightsup.socialstat.annotation.RequestMapping;
 import by.lightsup.socialstat.builder.FollowedByBuilder;
 import by.lightsup.socialstat.builder.FollowsBuilder;
+import by.lightsup.socialstat.builder.LargeUserBuilder;
+import by.lightsup.socialstat.entity.LargeUser;
 import by.lightsup.socialstat.entity.ShortUser;
 import by.lightsup.socialstat.entity.requestor.EntityRequestor;
 import by.lightsup.socialstat.parser.SimpleParser;
-import com.google.common.collect.ImmutableMap;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,6 +25,7 @@ import java.util.Map;
 import static by.lightsup.socialstat.util.RequestUtil.getResultJson;
 import static by.lightsup.socialstat.util.StringUtil.ACCESS_TOKEN_PARAMETER;
 import static by.lightsup.socialstat.util.StringUtil.USER_ID_PARAMETER;
+import static com.google.common.collect.ImmutableMap.of;
 
 /**
  * Class-controller to match requests. Methods should be static to invoke by reflection.
@@ -38,9 +40,9 @@ public class InstagramController extends HttpServlet {
             HttpSession session = request.getSession();
             String userId = (String) session.getAttribute(USER_ID_PARAMETER);
             String accessToken = (String) session.getAttribute(ACCESS_TOKEN_PARAMETER);
-            Map<String, String> parameters = ImmutableMap.of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
+            Map<String, String> parameters = of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
             List<ShortUser> follow = new EntityRequestor<>(new SimpleParser(), new FollowsBuilder(), parameters).getEntityList();
-            request.setAttribute("follow", follow);
+            request.setAttribute("users", follow);
             request.getRequestDispatcher("/followers.tiles").forward(request, response);
         } catch (IOException | ServletException e) {
             String message = "Exception occurred while getting followers";
@@ -54,9 +56,9 @@ public class InstagramController extends HttpServlet {
             HttpSession session = request.getSession();
             String userId = (String) session.getAttribute(USER_ID_PARAMETER);
             String accessToken = (String) session.getAttribute(ACCESS_TOKEN_PARAMETER);
-            Map<String, String> parameters = ImmutableMap.of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
+            Map<String, String> parameters = of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
             List<ShortUser> followedBy = new EntityRequestor<>(new SimpleParser(), new FollowedByBuilder(), parameters).getEntityList();
-            request.setAttribute("follow", followedBy);
+            request.setAttribute("users", followedBy);
             request.getRequestDispatcher("/followers.tiles").forward(request, response);
         } catch (IOException | ServletException e) {
             String message = "Exception occurred while getting followers by users";
@@ -72,8 +74,11 @@ public class InstagramController extends HttpServlet {
             JSONObject userObject = (JSONObject) jsonObject.get("user");
             ShortUser user = ShortUser.newInstance(userObject);
             String accessToken = jsonObject.get("access_token").toString();
-            session.setAttribute("user", user);
-            session.setAttribute(USER_ID_PARAMETER, user.getId());
+            String userId = user.getId();
+            Map<String, String> parameters = of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
+            LargeUser largeUser = new EntityRequestor<>(new SimpleParser(), new LargeUserBuilder(), parameters).getEntityList().get(0);
+            session.setAttribute("user", largeUser);
+            session.setAttribute(USER_ID_PARAMETER, userId);
             session.setAttribute(ACCESS_TOKEN_PARAMETER, accessToken);
 
             response.sendRedirect("/profile.tiles");

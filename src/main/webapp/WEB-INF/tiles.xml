@@ -17,11 +17,6 @@
         <put-attribute name="body" value="/jsp/users_list.jsp" />
     </definition>
 
-    <definition name="followed-by" extends="profile">
-        <put-attribute name="title" value="followed-by" />
-        <put-attribute name="body" value="/jsp/users_list.jsp" />
-    </definition>
-    
     <definition name="statistic" extends="profile">
     	<put-attribute name="title" value="statistic" />
         <put-attribute name="body" value="/jsp/statistic.jsp" />
