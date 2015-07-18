@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static by.lightsup.socialstat.annotation.InvokedMethod.apply;
+import static by.lightsup.socialstat.annotation.InvokedMethod.isInvoke;
 
 public class AnnotationParser<T> {
     private static final Logger LOG = Logger.getLogger(AnnotationParser.class);
@@ -23,7 +23,7 @@ public class AnnotationParser<T> {
     public void invokeMethod(Class<T> clazz, HttpServletRequest request, HttpServletResponse response) {
         try {
             Method[] methods = clazz.getMethods();
-            Optional<Method> method = Stream.of(methods).filter(m -> apply(m, request)).findAny();
+            Optional<Method> method = Stream.of(methods).filter(m -> isInvoke(m, request)).findAny();
             method.get().invoke(null, request, response);
         } catch (Exception e) {
             String message = "Exception occurred while parsing annotation";

@@ -12,6 +12,7 @@ public final class UrlUtil {
     public static final String LARGE_USER_REQUEST = "https://api.instagram.com/v1/users/%s/?access_token=%s";
     public static final String USER_FOLLOWS_REQUEST = "https://api.instagram.com/v1/users/%s/follows?access_token=%s";
     public static final String USER_MEDIA_REQUEST = "https://api.instagram.com/v1/users/%s/media/recent/?access_token=%s";
+    public static final String BY_ID_MEDIA_REQUEST = "https://api.instagram.com/v1/media/%s?access_token=%s";
     public static final String MEDIA_LIKES_REQUEST = "https://api.instagram.com/v1/media/%s/likes?access_token=%s";
     public static final String MEDIA_COMMENTS_REQUEST = "https://api.instagram.com/v1/media/%s/comments?access_token=%s";
     public static final String USER_FOLLOWED_BY_REQUEST = "https://api.instagram.com/v1/users/%s/followed-by?access_token=%s";
