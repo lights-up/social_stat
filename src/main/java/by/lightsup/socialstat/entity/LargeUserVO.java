@@ -11,7 +11,7 @@ import by.lightsup.socialstat.parser.SimpleParser;
 public class LargeUserVO {
 	
 	private LargeUser user;
-	private List<MediaVO> mediaList;
+	private List<Media> mediaList;
 
 	public LargeUserVO() {
 	}
@@ -24,13 +24,14 @@ public class LargeUserVO {
 		this.user = user;
 	}
 
-	public List<MediaVO> getMediaList() {
+	public List<Media> getMediaList() {
 		return mediaList;
 	}
 
-	public void setMediaList(List<MediaVO> mediaList) {
+	public void setMediaList(List<Media> mediaList) {
 		this.mediaList = mediaList;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -62,18 +63,13 @@ public class LargeUserVO {
 			return false;
 		return true;
 	}
-	
+
 	public static LargeUserVO newInstance(Map<String, String> parameters){
 		LargeUserVO user = new LargeUserVO();
-		MediaVO mediaVO = null;
 		LargeUser largeUser = new EntityRequestor<>(new SimpleParser(), new LargeUserBuilder(), parameters).getEntityList().get(0);
 		List<Media> mediaList = new EntityRequestor<>(new SimpleParser(), new MediaBuilder(), parameters).getEntityList();
-		for (Media media : mediaList) {
-			parameters.put("mediaId", media.getIdMedia());
-			mediaVO = MediaVO.newInstance(parameters);
-			user.getMediaList().add(mediaVO);
-		}
-		
+		user.setUser(largeUser);
+		user.setMediaList(mediaList);
 		return user;
 	}
 
