@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,9 @@ import static by.lightsup.socialstat.util.RequestUtil.getResultJson;
 import static by.lightsup.socialstat.util.StringUtil.ACCESS_TOKEN_PARAMETER;
 import static by.lightsup.socialstat.util.StringUtil.USER_ID_PARAMETER;
 
+/**
+ * Class-controller to match requests. It's important that methods should be static.
+ */
 public class InstagramController extends HttpServlet {
 
     private static final Logger LOG = Logger.getLogger(InstagramController.class);
@@ -37,7 +41,7 @@ public class InstagramController extends HttpServlet {
     }
 
     @RequestMapping(path = "/follow")
-    public void getFollowersPage(HttpServletRequest request, HttpServletResponse response) {
+    public static void getFollowersPage(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();
             String userId = (String) session.getAttribute(USER_ID_PARAMETER);
@@ -53,7 +57,7 @@ public class InstagramController extends HttpServlet {
     }
 
     @RequestMapping(path = "/followed-by")
-    public void getFollowedByPage(HttpServletRequest request, HttpServletResponse response) {
+    public static void getFollowedByPage(HttpServletRequest request, HttpServletResponse response) {
         try {
             HttpSession session = request.getSession();
             String userId = (String) session.getAttribute(USER_ID_PARAMETER);
@@ -69,7 +73,7 @@ public class InstagramController extends HttpServlet {
     }
 
     @RequestMapping(path = "/gettoken")
-    public void getProfilePage(HttpServletRequest request, HttpServletResponse response) {
+    public static void getProfilePage(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         try {
             JSONObject jsonObject = getJSONObject(request);
@@ -89,7 +93,7 @@ public class InstagramController extends HttpServlet {
         }
     }
 
-    private JSONObject getJSONObject(HttpServletRequest request) throws IOException {
+    private static JSONObject getJSONObject(HttpServletRequest request) throws IOException {
         JSONObject jsonObject = null;
         try {
             String res = getResultJson(request);

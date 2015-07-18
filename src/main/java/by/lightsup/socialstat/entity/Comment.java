@@ -3,6 +3,7 @@ package by.lightsup.socialstat.entity;
 import org.json.simple.JSONObject;
 
 public class Comment {
+
     private String idComment;
     private String text;
     private ShortUser user;

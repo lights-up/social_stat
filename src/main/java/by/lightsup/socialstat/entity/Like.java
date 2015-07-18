@@ -3,6 +3,7 @@ package by.lightsup.socialstat.entity;
 import org.json.simple.JSONObject;
 
 public class Like {
+
 	private String idLike;
 	private ShortUser user;
 

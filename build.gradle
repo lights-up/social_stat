@@ -21,7 +21,7 @@ dependencies {
     compile "org.apache.tiles:tiles-extras:3.0.5"
 }
 
-def checkstylePath = "$rootProject.projectDir/util/checkstyle"
+def checkstylePath = "$rootProject.projectDir/util/checkstyle/"
 
 checkstyleMain {
     configFile = new File(checkstylePath, "checkstyleMain.xml")

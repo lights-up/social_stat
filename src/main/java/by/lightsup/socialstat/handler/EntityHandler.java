@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.String.format;
 import static org.apache.http.client.fluent.Request.Get;
 
 public class EntityHandler<T> {
@@ -28,3 +27,4 @@ public class EntityHandler<T> {
         return Get(builder.getRequestUrl(parameters)).execute().returnContent().toString();
     }
 }
+

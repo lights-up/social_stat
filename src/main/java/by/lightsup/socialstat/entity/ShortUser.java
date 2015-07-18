@@ -1,16 +1,9 @@
 package by.lightsup.socialstat.entity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class ShortUser {
+
 	private String id;
 	private String username;
 	private String profilePicture;

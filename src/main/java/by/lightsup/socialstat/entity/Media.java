@@ -2,13 +2,13 @@ package by.lightsup.socialstat.entity;
 
 import by.lightsup.socialstat.builder.CommentBuilder;
 import by.lightsup.socialstat.builder.LikeBuilder;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Media {
+
     private String idMedia;
     private ShortUser user;
     private List<Like> likes;
