@@ -14,7 +14,7 @@ import static by.lightsup.socialstat.util.StringUtil.MEDIA_ID_PARAMETER;
 import static by.lightsup.socialstat.util.UrlUtil.MEDIA_LIKES_REQUEST;
 import static java.lang.String.format;
 
-public class LikeBuilder extends AbstractBuilder<Like> {
+public class LikeBuilder implements Builder<Like> {
 
     @Override
     public List<Like> getList(JSONObject jsonObject) {

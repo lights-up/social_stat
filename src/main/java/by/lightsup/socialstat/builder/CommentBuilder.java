@@ -14,7 +14,7 @@ import static by.lightsup.socialstat.util.StringUtil.MEDIA_ID_PARAMETER;
 import static by.lightsup.socialstat.util.UrlUtil.MEDIA_COMMENTS_REQUEST;
 import static java.lang.String.format;
 
-public class CommentBuilder extends AbstractBuilder<Comment> {
+public class CommentBuilder implements Builder<Comment> {
 
     @Override
     public List<Comment> getList(JSONObject jsonObject) {

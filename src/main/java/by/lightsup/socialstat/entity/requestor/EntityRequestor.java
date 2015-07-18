@@ -1,6 +1,6 @@
 package by.lightsup.socialstat.entity.requestor;
 
-import by.lightsup.socialstat.builder.AbstractBuilder;
+import by.lightsup.socialstat.builder.Builder;
 import by.lightsup.socialstat.handler.EntityHandler;
 import by.lightsup.socialstat.parser.AbstractParser;
 import org.apache.log4j.Logger;
@@ -22,7 +22,7 @@ public class EntityRequestor<T> {
     private static final Logger LOG = Logger.getLogger(EntityRequestor.class);
 
     private AbstractParser parser;
-    private AbstractBuilder<T> builder;
+    private Builder<T> builder;
     private Map<String, String> parameters;
 
     /**
@@ -31,7 +31,7 @@ public class EntityRequestor<T> {
      * @param builder
      * @param parameters used in request string
      */
-    public EntityRequestor(AbstractParser parser, AbstractBuilder<T> builder, Map<String, String> parameters) {
+    public EntityRequestor(AbstractParser parser, Builder<T> builder, Map<String, String> parameters) {
         this.parser = parser;
         this.builder = builder;
         this.parameters = parameters;

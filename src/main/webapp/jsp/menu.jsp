@@ -13,13 +13,13 @@
 	</tr>
 	<tr>
 		<td>
-			<a class="btn-menu-lightsup" href="/watch/follow">My Followers</a>
+			<a class="btn-menu-lightsup" href="/watch/followed-by">My Followers</a>
 			<br>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<a class="btn-menu-lightsup" href="/watch/followed-by">I Follow</a>
+			<a class="btn-menu-lightsup" href="/watch/follow">I Follow</a>
 			<br>
 		</td>
 	</tr>

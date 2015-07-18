@@ -14,7 +14,7 @@ import static by.lightsup.socialstat.util.StringUtil.USER_ID_PARAMETER;
 import static by.lightsup.socialstat.util.UrlUtil.USER_MEDIA_REQUEST;
 import static java.lang.String.format;
 
-public class MediaBuilder extends AbstractBuilder<Media> {
+public class MediaBuilder implements Builder<Media> {
 
     @Override
     public List<Media> getList(JSONObject jsonObject) {

@@ -14,7 +14,7 @@ import org.json.simple.JSONObject;
 
 import by.lightsup.socialstat.entity.Media;
 
-public class MediaByIdBuilder extends AbstractBuilder<Media>{
+public class MediaByIdBuilder implements Builder<Media> {
 
 	public MediaByIdBuilder() {
 	}

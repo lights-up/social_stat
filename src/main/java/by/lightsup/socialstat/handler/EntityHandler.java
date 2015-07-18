@@ -1,6 +1,6 @@
 package by.lightsup.socialstat.handler;
 
-import by.lightsup.socialstat.builder.AbstractBuilder;
+import by.lightsup.socialstat.builder.Builder;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
@@ -11,10 +11,10 @@ import static org.apache.http.client.fluent.Request.Get;
 
 public class EntityHandler<T> {
 
-    private AbstractBuilder<T> builder;
+    private Builder<T> builder;
     private Map<String, String> parameters;
 
-    public EntityHandler(AbstractBuilder<T> builder, Map<String, String> parameters) {
+    public EntityHandler(Builder<T> builder, Map<String, String> parameters) {
         this.builder = builder;
         this.parameters = parameters;
     }

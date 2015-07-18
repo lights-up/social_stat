@@ -2,11 +2,11 @@
 <html>
   <head>
     <title><tiles:getAsString name="title"/></title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/buttons.css" rel="stylesheet">
-    <link rel="Shortcut Icon" type="image/x-icon" href="img/favicon.ico">
+    <link href="${context}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${context}/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="${context}/css/style.css" rel="stylesheet">
+    <link href="${context}/css/buttons.css" rel="stylesheet">
+    <link rel="Shortcut Icon" type="image/x-icon" href="${context}/img/favicon.ico">
   </head>
   <body>
   	<!-- Header -->

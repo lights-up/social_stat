@@ -9,9 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import static by.lightsup.socialstat.entity.ShortUser.newInstance;
-import static by.lightsup.socialstat.util.StringUtil.EMPTY;
 
-public class ShortUserBuilder extends AbstractBuilder<ShortUser> {
+public abstract class ShortUserBuilder implements Builder<ShortUser> {
 
     @Override
     public List<ShortUser> getList(JSONObject jsonObject) {
@@ -23,8 +22,5 @@ public class ShortUserBuilder extends AbstractBuilder<ShortUser> {
         return users;
     }
 
-    @Override
-    public String getRequestUrl(Map<String, String> parameters) {
-        return EMPTY;
-    }
+    public abstract String getRequestUrl(Map<String, String> parameters);
 }

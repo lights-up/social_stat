@@ -13,7 +13,7 @@ import static by.lightsup.socialstat.util.UrlUtil.LARGE_USER_REQUEST;
 import static java.lang.String.format;
 import static java.util.Collections.singletonList;
 
-public class LargeUserBuilder extends AbstractBuilder<LargeUser> {
+public class LargeUserBuilder implements Builder<LargeUser> {
 
     @Override
     public List<LargeUser> getList(JSONObject jsonObject) {
