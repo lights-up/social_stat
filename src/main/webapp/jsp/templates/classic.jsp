@@ -1,37 +1,34 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title><tiles:getAsString name="title"/></title>
-    <link href="${context}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${context}/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="${context}/css/style.css" rel="stylesheet">
-    <link href="${context}/css/buttons.css" rel="stylesheet">
-    <link rel="Shortcut Icon" type="image/x-icon" href="${context}/img/favicon.ico">
-  </head>
-  <body>
-  	<!-- Header -->
-  	<tiles:insertAttribute name="navMenu" />
-  	
-  	<table width="1200px" align="center">
-      		<tr>    
-      			<!-- Personal Menu -->
-      			<td width="20%" align="center" rowspan="3">
-      				<tiles:insertAttribute name="menu" />  
-      			</td> 
-      			<!-- Current Profile -->
-      			<td width="80%" align="center">   
-         			<tiles:insertAttribute name="profile" />  
-        		</td>        		
-      		</tr>
-      		<tr>
-    			<!-- The Body of Page -->
-      			<td align="center">   
-         			<tiles:insertAttribute name="body" />  
-        		</td> 
-    		</tr> 
-    </table>    
-    	
-   	<!-- Footer -->
-  	<tiles:insertAttribute name="footer" />
-  </body>
+<head>
+	<title>TPWatcher</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="${context}/css/main.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
+</head>
+<body class="loading">
+<div id="wrapper">
+	<div id="bg"></div>
+	<div id="overlay"></div>
+	<div id="main">
+		<header id="header">
+			<tiles:insertAttribute name = "profile" />
+			<tiles:insertAttribute name = "navigation"/>
+		</header>
+
+		<tiles:insertAttribute name="body" />
+		<tiles:insertAttribute name="footer" />
+	</div>
+</div>
+<!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
+<script>
+	window.onload = function() { document.body.className = ''; }
+	window.ontouchmove = function() { return false; }
+	window.onorientationchange = function() { document.body.scrollTop = 0; }
+</script>
+</body>
 </html>

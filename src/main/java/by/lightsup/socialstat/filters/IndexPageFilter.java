@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/", "/index.jsp", "/index"})
+@WebFilter(urlPatterns = {"/", "/index"})
 public class IndexPageFilter extends AbstractFilter {
 
     private static final Logger LOGGER = Logger.getLogger(IndexPageFilter.class);
@@ -17,9 +17,9 @@ public class IndexPageFilter extends AbstractFilter {
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
         try {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/welcome.tiles").forward(request, response);
         } catch (IOException | ServletException e) {
-            String message = "Exception occurred while render index.jsp";
+            String message = "Exception occurred while render welcome page";
             LOGGER.error(message, e);
         }
 
