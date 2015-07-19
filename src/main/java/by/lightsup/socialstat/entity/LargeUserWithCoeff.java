@@ -51,4 +51,11 @@ public class LargeUserWithCoeff {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "LargeUserWithCoeff [user=" + user + ", coeff=" + coeff + "]";
+	}
+	
+	
+
 }

@@ -149,4 +149,12 @@ public class LargeUser {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "LargeUser [idUser=" + idUser + ", username=" + username + ", profilePicture=" + profilePicture
+				+ ", fullName=" + fullName + ", mediaNumber=" + mediaNumber + ", followedBy=" + followedBy
+				+ ", follows=" + follows + "]";
+	}
+	
 }

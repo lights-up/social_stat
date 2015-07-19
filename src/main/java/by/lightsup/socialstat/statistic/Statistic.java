@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;	
+import java.util.Map;
 
 public class Statistic {
 
@@ -27,6 +27,7 @@ public class Statistic {
 	 * @return sorted list of users
 	 */
 	public List<LargeUserWithCoeff> getStatistic(Map<String, String> parameters) {
+		System.out.println("--------------------------------GET STATISTIC BEGIN-----------------------------");
 		List<ShortUser> follows = new EntityRequestor<>(new SimpleParser(), new FollowsBuilder(), parameters)
 				.getEntityList();
 		List<LargeUserWithCoeff> usersWithCoeffs = new ArrayList<>();
@@ -40,9 +41,10 @@ public class Statistic {
 	}
 
 	private LargeUserWithCoeff createLargeUserWithCoeff(LargeUserVO userVO) {
+		System.out.println("--------------------------------createLargeUserWithCoeff-----------------------------");
 		LargeUserWithCoeff userWithCoeff = new LargeUserWithCoeff();
 		List<Media> mediaList = userWithCoeff.getUser().getMediaList();
-		int i = 0;
+		double i = 0;
 		for (Media media : mediaList) {
 			if (isLikedByUser(userVO.getUser().getId(), media)) {
 				++i;

@@ -22,6 +22,5 @@ public class IndexPageFilter extends AbstractFilter {
             String message = "Exception occurred while render welcome page";
             LOGGER.error(message, e);
         }
-
     }
 }

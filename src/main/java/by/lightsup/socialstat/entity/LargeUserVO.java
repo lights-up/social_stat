@@ -73,4 +73,10 @@ public class LargeUserVO {
 		return user;
 	}
 
+	@Override
+	public String toString() {
+		return "LargeUserVO [user=" + user + ", mediaList=" + mediaList + "]";
+	}
+	
+
 }
