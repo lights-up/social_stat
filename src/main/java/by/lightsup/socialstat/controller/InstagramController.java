@@ -11,6 +11,7 @@ import by.lightsup.socialstat.entity.requestor.EntityRequestor;
 import by.lightsup.socialstat.parser.SimpleParser;
 import by.lightsup.socialstat.statistic.Statistic;
 
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -47,9 +48,10 @@ public class InstagramController extends HttpServlet {
 			Map<String, String> parameters = of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
 			List<ShortUser> follow = new EntityRequestor<>(new SimpleParser(), new FollowsBuilder(), parameters)
 					.getEntityList();
-			request.setAttribute("users", follow);
-			request.getRequestDispatcher("/followers.tiles").forward(request, response);
-		} catch (IOException | ServletException e) {
+			String json = new Gson().toJson(follow);
+			response.setContentType("application/json");
+			response.getWriter().write(json);
+		} catch (IOException e) {
 			String message = "Exception occurred while getting followers";
 			LOG.error(message, e);
 		}
@@ -64,9 +66,10 @@ public class InstagramController extends HttpServlet {
 			Map<String, String> parameters = of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
 			List<ShortUser> followedBy = new EntityRequestor<>(new SimpleParser(), new FollowedByBuilder(), parameters)
 					.getEntityList();
-			request.setAttribute("users", followedBy);
-			request.getRequestDispatcher("/followers.tiles").forward(request, response);
-		} catch (IOException | ServletException e) {
+			String json = new Gson().toJson(followedBy);
+			response.setContentType("application/json");
+			response.getWriter().write(json);
+		} catch (IOException e) {
 			String message = "Exception occurred while getting followers by users";
 			LOG.error(message, e);
 		}

@@ -94,6 +94,11 @@
 			border-color: transparent;
 		}
 
+.upButton{
+	position: fixed;
+	bottom: 25%;
+	right: 20%;
+}
 
 /*Welcome Button*/
 .welcomeButton {

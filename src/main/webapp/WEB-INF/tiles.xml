@@ -5,19 +5,11 @@
 <tiles-definitions>
     <definition name="profile" template="/jsp/templates/classic.jsp">
         <put-attribute name="profile" value="/jsp/profile.jsp" />
-        <put-attribute name="body" value="" />
-        <put-attribute name="navigation" value="/jsp/navigation.jsp"/>
         <put-attribute name="footer" value="/jsp/footer/footer.jsp" />
     </definition>
 
-    <definition name="followers" extends="profile">
-        <put-attribute name="title" value="followers" />
-        <put-attribute name="body" value="/jsp/users_list.jsp" />
-    </definition>
-
-    <definition name="welcome" extends="profile">
-        <put-attribute name="profile" value="/jsp/welcome.jsp"/>
-        <put-attribute name="navigation" value=""/>
+    <definition name="welcome" template="/jsp/templates/index.jsp">
+        <put-attribute name="footer" value="/jsp/footer/footer.jsp"/>
     </definition>
 
     <definition name="statistic" extends="profile">
