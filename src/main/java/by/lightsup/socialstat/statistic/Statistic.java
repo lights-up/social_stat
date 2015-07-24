@@ -43,7 +43,7 @@ public class Statistic {
 	private LargeUserWithCoeff createLargeUserWithCoeff(LargeUserVO userVO) {
 		System.out.println("--------------------------------createLargeUserWithCoeff-----------------------------");
 		LargeUserWithCoeff userWithCoeff = new LargeUserWithCoeff();
-		List<Media> mediaList = userWithCoeff.getUser().getMediaList();
+		List<Media> mediaList = userVO.getMediaList();
 		double i = 0;
 		for (Media media : mediaList) {
 			if (isLikedByUser(userVO.getUser().getId(), media)) {
@@ -51,7 +51,7 @@ public class Statistic {
 			}
 		}
 		userWithCoeff.setUser(userVO);
-		userWithCoeff.setCoeff(i / mediaList.size());
+		userWithCoeff.setCoeff(mediaList.size() == 0 ? 0 : i / mediaList.size());
 		return userWithCoeff;
 	}
 

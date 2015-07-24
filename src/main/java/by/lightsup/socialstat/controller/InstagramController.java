@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -104,7 +105,9 @@ public class InstagramController extends HttpServlet {
 		Statistic statistic = new Statistic();
 		String userId = (String) session.getAttribute(USER_ID_PARAMETER);
 		String accessToken = (String) session.getAttribute(ACCESS_TOKEN_PARAMETER);
-		Map<String, String> parameters = of(USER_ID_PARAMETER, userId, ACCESS_TOKEN_PARAMETER, accessToken);
+		Map<String, String> parameters = new HashMap<>();
+		parameters.put(USER_ID_PARAMETER, userId);
+		parameters.put(ACCESS_TOKEN_PARAMETER, accessToken);
 		List<LargeUserWithCoeff> userVOs = statistic.getStatistic(parameters);
 		request.setAttribute("usersVO", userVOs);
 		System.out.println(userVOs);
